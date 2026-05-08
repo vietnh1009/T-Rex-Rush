@@ -1072,7 +1072,8 @@ def draw_top5_scores_panel(target, top_scores, game_rect):
         hdr_col = (118, 82, 50)
         panel.blit(_overlay_xs.render("RANK", True, hdr_col), (26, header_y))
         panel.blit(_overlay_xs.render("PLAYER", True, hdr_col), (98, header_y))
-        panel.blit(_overlay_xs.render("SCORE", True, hdr_col), (panel_w - 165, header_y))
+        score_header = _overlay_xs.render("SCORE", True, hdr_col)
+        panel.blit(score_header, (panel_w - score_header.get_width() - 28, header_y))
         row_y = header_y + 30
         row_h = max(34, (panel_h - row_y - 16) // 5)
         avatar_size = max(28, min(54, row_h - 8))

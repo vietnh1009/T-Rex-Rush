@@ -49,8 +49,8 @@ black          = (0,   0,   0)
 BACKGROUND_STAGES = [
     # score, filename, UI theme
     (0,    "background_1.png",  "light"),
-    (250,  "background_4.png",  "light"),
-    (500,  "background_3.png",  "dark"),
+    (250,  "background_2.png",  "light"),
+    (500,  "background_3.png",  "light"),
     (800,  "background_5.png",  "light"),
     (1100, "background_6.png",  "light"),
     (1450, "background_7.png",  "light"),
@@ -1046,12 +1046,7 @@ def draw_top5_scores_panel(target, top_scores, game_rect):
         return
 
     outer_margin = max(16, int(target_w * 0.012))
-    gap = max(16, int(target_w * 0.012))
-    webcam_panel_w, _ = get_webcam_panel_dimensions(target_w, top_space_h)
-    available_w = target_w - outer_margin * 2 - webcam_panel_w - gap
-    panel_w = max(320, min(980, available_w))
-    panel_w = min(panel_w, max(320, target_w - outer_margin * 2))
-    panel_h = min(max(230, top_space_h - 32), 360)
+    panel_w, panel_h = get_webcam_panel_dimensions(target_w, top_space_h)
     panel_x = outer_margin
     panel_y = max(12, (top_space_h - panel_h) // 2)
 
@@ -1072,8 +1067,7 @@ def draw_top5_scores_panel(target, top_scores, game_rect):
         hdr_col = (118, 82, 50)
         panel.blit(_overlay_xs.render("RANK", True, hdr_col), (26, header_y))
         panel.blit(_overlay_xs.render("PLAYER", True, hdr_col), (98, header_y))
-        score_header = _overlay_xs.render("SCORE", True, hdr_col)
-        panel.blit(score_header, (panel_w - score_header.get_width() - 28, header_y))
+        panel.blit(_overlay_xs.render("SCORE", True, hdr_col), (panel_w - 165, header_y))
         row_y = header_y + 30
         row_h = max(34, (panel_h - row_y - 16) // 5)
         avatar_size = max(28, min(54, row_h - 8))
